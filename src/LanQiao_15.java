@@ -2,40 +2,48 @@ import java.util.*;
 
 public class LanQiao_15 {
     public static void main(String[] args) {
-        /*Scanner sc=new Scanner(System.in);
-        int n = sc.nextInt();*/
-
-        int[] nums = new int[3];
-        nums[0] = 1134;
-        nums[1] = 1315;
-        nums[2] = 3456;
-       /* for (int i = 0; i < n; i++) {
+       Scanner sc=new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] nums = new int[n];
+        for (int i = 0; i < n; i++) {
             nums[i] = sc.nextInt();
-        }*/
+        }
         StringBuffer s = new StringBuffer();
         for (int i = 0; i < nums.length; i++) {
             s.append(String.valueOf(nums[i]));
         }
-        char m;
         char[] c = s.toString().toCharArray();
         Map map = new HashMap<Integer, Integer>();
-        List<char[]> list1=Arrays.asList(c);
-
-      /*  Set<String> staffsSet = new HashSet<String>(Arrays.asList(c));*/
-      /*  for (Object o : staffsSet) {
+       /*
+       这里是计划求数组中重复元素的个数，
+       思路是char[] 转set , for i 为set.size(), for j 为char[]长度，然后组成二层循环
+       通过比较的方式：c[i] == c[j]来计算元素重复的次数
+       map.get(c[i]) == null判断原map中是否有c[i]--->但map方法用错了，最好使用map.containsKey(c[i])
+       Object[] cu=unique(c);
+       System.out.println(cu);
+      Set<String> staffsSet = new HashSet<String>(Arrays.asList(c));
+        for (Object o : staffsSet) {
           System.out.println(o);
-        }*/
-       /* for (int i = 0; i < staffsSet.size(); i++) {
-            for (int j = i + 1; j < c.length; j++) {
+        }
+      for (int i = 0; i < cu.length; i++) {
+            for (int j = i+1;j < c.length; j++) {
                 if (c[i] == c[j]) {
                     if (map.get(c[i]) == null) {
-                        map.put(c[i], 1);
+                        map.put(c[i], 2);
                     } else {
                         map.put(c[i], (int) map.get(c[i]) + 1);
                     }
                 }
             }
         }*/
+      /*  for (int i = 0;i < c.length; i++){
+            if (!map.containsKey(c[i]))
+                map.put(c[i], 1);
+            else
+                map.put(c[i], (int)map.get(c[i])+1);
+        }*/
+        map=getSubStr(c,map);
+
        /* for (int i = 0; i < ; i++) {
             map.get()
         }*/
@@ -62,13 +70,24 @@ public class LanQiao_15 {
         }
 
     }
-
     /**
-     * 去除数组中
+     * String类操作：统计字符出现的个数
+     */
+    static Map getSubStr(char[] c,Map map){
+        for (int i = 0;i < c.length; i++){
+            if (!map.containsKey(c[i]))
+                map.put(c[i], 1);
+            else
+                map.put(c[i], (int)map.get(c[i])+1);
+        }
+        return map;
+    }
+    /**
+     * 去除数组中重复的元素
      * @param arr
      * @return
      */
-    public static Object[] unique(Object [] arr){
+    public static Object[] unique(char[] arr){
         //实例化一个set集合
         Set set = new HashSet();
         //遍历数组并存入集合,如果元素已存在则不会重复存入
