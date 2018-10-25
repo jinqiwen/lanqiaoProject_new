@@ -14,6 +14,8 @@ public class LanQiao_29 {
                     break;
                 }else if(cs[i]=='/'||cs[i]=='*'||cs[i]=='['||cs[i]==']'||cs[i]=='{'||cs[i]=='}'||cs[i]=='('||cs[i]==')'){
                     if(cs[i]=='*'&&cs[i-1]=='/'){
+                        list.remove(i);
+                        list.remove(i-1);
                         list.add('<');
                     }else if(cs[i]=='*'&&cs[i]=='/'){
                         list.add('>');
@@ -32,7 +34,7 @@ public class LanQiao_29 {
         char f=' ';
         char l=' ';
         boolean logic=true;
-       for(int i = 0; i <list.size() ; i++) {
+       /*for(int i = 0; i <list.size() ; i++) {
             if((list.get(i)=='['&&list.get(i+1)==']')){
                  list.remove(i);
                  list.remove(i);
@@ -43,7 +45,7 @@ public class LanQiao_29 {
                 list.remove(i);
                 list.remove(i);
             }
-        }
+        }*/
         System.out.println(list);
 
 
